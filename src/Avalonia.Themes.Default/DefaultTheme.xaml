@@ -41,4 +41,6 @@
   <StyleInclude Source="resm:Avalonia.Themes.Default.CalendarDayButton.xaml?assembly=Avalonia.Themes.Default"/>
   <StyleInclude Source="resm:Avalonia.Themes.Default.CalendarItem.xaml?assembly=Avalonia.Themes.Default"/>
   <StyleInclude Source="resm:Avalonia.Themes.Default.Calendar.xaml?assembly=Avalonia.Themes.Default"/>
+  <StyleInclude Source="resm:Avalonia.Themes.Default.DataGrid.xaml?assembly=Avalonia.Themes.Default"/>
+  <StyleInclude Source="resm:Avalonia.Themes.Default.DataGridRow.xaml?assembly=Avalonia.Themes.Default"/>
 </Styles>

@@ -5,6 +5,7 @@
     <TabControl.Transition>
       <CrossFade Duration="0.25"/>
     </TabControl.Transition>
+    <TabItem Header="DataGrid"><pages:DataGridPage /></TabItem>
     <TabItem Header="Border"><pages:BorderPage/></TabItem>
     <TabItem Header="Button"><pages:ButtonPage/></TabItem>
     <TabItem Header="Calendar"><pages:CalendarPage/></TabItem>

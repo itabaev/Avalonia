@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\ContextMenuPage.xaml" />
+    <None Remove="Pages\DataGridPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -34,6 +35,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DecoratedWindow.xaml">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DataGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DialogsPage.xaml">
       <SubType>Designer</SubType>
@@ -157,6 +161,9 @@
     </Compile>
     <Compile Include="Pages\ToolTipPage.xaml.cs">
       <DependentUpon>ToolTipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataGridPage.xaml.cs">
+      <DependentUpon>DataGridPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ScreenPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
