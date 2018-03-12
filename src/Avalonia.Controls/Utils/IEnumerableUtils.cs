@@ -3,8 +3,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 
 namespace Avalonia.Controls.Utils
 {
@@ -79,5 +83,127 @@ namespace Avalonia.Controls.Utils
                 return Enumerable.ElementAt(items.Cast<object>(), index);
             }
         }
+
+        public static bool IsEmpty(this IEnumerable items)
+        {
+            Contract.Requires<ArgumentNullException>(items != null);
+
+            var enumerator = items.GetEnumerator();
+            var isEmpty = !enumerator.MoveNext();
+
+            (enumerator as IDisposable)?.Dispose();
+
+            return isEmpty;
+        }
+
+        public static ReadOnlyCollection<ItemPropertyInfo> GetItemProperties(this IEnumerable items)
+        {
+            if (items == null)
+                return null;
+
+            IEnumerable properties = null;
+
+            ITypedList itl = items as ITypedList;
+            Type itemType;
+            object item;
+
+            if (itl != null)
+            {
+                // ITypedList has the information
+                properties = itl.GetItemProperties(null);
+            }
+            else if ((itemType = items.GetItemType()) != null)
+            {
+                // If we know the item type, use its properties.
+                properties = TypeDescriptor.GetProperties(itemType);
+            }
+            else if ((item = items.GetRepresentativeItem()) != null)
+            {
+                properties = TypeDescriptor.GetProperties(item);
+            }
+
+            if (properties == null)
+                return null;
+
+            // Convert the properties to ItemPropertyInfo
+            List<ItemPropertyInfo> list = new List<ItemPropertyInfo>();
+            foreach (var property in properties)
+            {
+                PropertyDescriptor pd;
+                PropertyInfo pi;
+
+                if ((pd = property as PropertyDescriptor) != null)
+                {
+                    list.Add(new ItemPropertyInfo(pd.Name, pd.PropertyType, pd));
+                }
+                else if ((pi = property as PropertyInfo) != null)
+                {
+                    list.Add(new ItemPropertyInfo(pi.Name, pi.PropertyType, pi));
+                }
+            }
+
+            // return the result as a read-only collection
+            return new ReadOnlyCollection<ItemPropertyInfo>(list);
+        }
+
+        private static Type GetItemType(this IEnumerable items)
+        {
+            Type collectionType = items.GetType();
+            Type[] interfaces = collectionType.GetInterfaces();
+
+            // Look for IEnumerable<T>.  All generic collections should implement
+            // this.  We loop through the interface list, rather than call
+            // GetInterface(IEnumerableT), so that we handle an ambiguous match
+            // (by using the first match) without an exception.
+            for (int i = 0; i < interfaces.Length; ++i)
+            {
+                Type interfaceType = interfaces[i];
+
+                if (interfaceType.Name == s_iEnumerableT)
+                {
+                    // found IEnumerable<>, extract T
+                    Type[] typeParameters = interfaceType.GetGenericArguments();
+                    if (typeParameters.Length == 1)
+                    {
+                        Type type = typeParameters[0];
+
+                        if (type == typeof(Object))
+                        {
+                            // IEnumerable<Object> is useless;  we need a representative
+                            // item.   But keep going - perhaps IEnumerable<T> shows up later.
+                            continue;
+                        }
+
+                        return type;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static object GetRepresentativeItem(this IEnumerable items)
+        {
+            if (items.IsEmpty())
+                return null;
+
+            object result = null;
+            IEnumerator ie = items.GetEnumerator();
+            while (ie.MoveNext())
+            {
+                object item = ie.Current;
+                if (item != null)
+                {
+                    result = item;
+                    break;
+                }
+            }
+
+            (ie as IDisposable)?.Dispose();
+
+            return result;
+        }
+
+        private static readonly string s_iEnumerableT = typeof(IEnumerable<>).Name;
     }
 }
