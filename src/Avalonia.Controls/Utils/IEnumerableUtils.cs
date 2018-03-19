@@ -126,17 +126,14 @@ namespace Avalonia.Controls.Utils
                 return null;
 
             // Convert the properties to ItemPropertyInfo
-            List<ItemPropertyInfo> list = new List<ItemPropertyInfo>();
+            var list = new List<ItemPropertyInfo>();
             foreach (var property in properties)
             {
-                PropertyDescriptor pd;
-                PropertyInfo pi;
-
-                if ((pd = property as PropertyDescriptor) != null)
+                if (property is PropertyDescriptor pd)
                 {
                     list.Add(new ItemPropertyInfo(pd.Name, pd.PropertyType, pd));
                 }
-                else if ((pi = property as PropertyInfo) != null)
+                else if (property is PropertyInfo pi)
                 {
                     list.Add(new ItemPropertyInfo(pi.Name, pi.PropertyType, pi));
                 }
@@ -148,8 +145,8 @@ namespace Avalonia.Controls.Utils
 
         private static Type GetItemType(this IEnumerable items)
         {
-            Type collectionType = items.GetType();
-            Type[] interfaces = collectionType.GetInterfaces();
+            var collectionType = items.GetType();
+            var interfaces = collectionType.GetInterfaces();
 
             // Look for IEnumerable<T>.  All generic collections should implement
             // this.  We loop through the interface list, rather than call
@@ -157,19 +154,19 @@ namespace Avalonia.Controls.Utils
             // (by using the first match) without an exception.
             for (int i = 0; i < interfaces.Length; ++i)
             {
-                Type interfaceType = interfaces[i];
+                var interfaceType = interfaces[i];
 
                 if (interfaceType.Name == s_iEnumerableT)
                 {
                     // found IEnumerable<>, extract T
-                    Type[] typeParameters = interfaceType.GetGenericArguments();
+                    var typeParameters = interfaceType.GetGenericArguments();
                     if (typeParameters.Length == 1)
                     {
-                        Type type = typeParameters[0];
+                        var type = typeParameters[0];
 
-                        if (type == typeof(Object))
+                        if (type == typeof(object))
                         {
-                            // IEnumerable<Object> is useless;  we need a representative
+                            // IEnumerable<object> is useless;  we need a representative
                             // item.   But keep going - perhaps IEnumerable<T> shows up later.
                             continue;
                         }
