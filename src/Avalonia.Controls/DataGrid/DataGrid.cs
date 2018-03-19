@@ -69,6 +69,7 @@ namespace Avalonia.Controls
         public DataGrid()
         {
             Columns = new ObservableCollection<DataGridColumn>();
+            Columns.CollectionChanged += OnColumnsCollectionChanged;
         }
 
         #region Properties
@@ -183,6 +184,15 @@ namespace Avalonia.Controls
         protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             base.ItemsCollectionChanged(sender, e);
+        }
+
+        private void OnColumnsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            ColumnsCollectionChanged(sender, e);
+        }
+
+        protected virtual void ColumnsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
         }
 
         private void AddAutoColumns()

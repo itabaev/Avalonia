@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="DataGrid.xaml" />
+    <None Remove="DataGridCell.xaml" />
+    <None Remove="DataGridCellsPresenter.xaml" />
+    <None Remove="DataGridColumnHeader.xaml" />
+    <None Remove="DataGridColumnHeadersPresenter.xaml" />
   </ItemGroup>
   <Import Project="..\..\build\Rx.props" />
 </Project>

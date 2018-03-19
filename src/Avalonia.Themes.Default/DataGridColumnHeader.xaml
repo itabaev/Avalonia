@@ -1,0 +1,18 @@
+<Styles xmlns="https://github.com/avaloniaui">
+  <Style Selector="DataGridColumnHeader">
+    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLightBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          Content="{TemplateBinding Content}"
+                          Padding="{TemplateBinding Padding}"/>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

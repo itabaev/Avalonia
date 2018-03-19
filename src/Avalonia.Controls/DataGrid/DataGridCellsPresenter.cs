@@ -3,7 +3,7 @@ using Avalonia.Controls.Templates;
 
 namespace Avalonia.Controls
 {
-    public class DataGridColumnHeadersPresenter : ItemsControl
+    public class DataGridCellsPresenter : ItemsControl
     {
         /// <summary>
         /// The default value for the <see cref="ItemsControl.ItemsPanel"/> property.
@@ -11,18 +11,18 @@ namespace Avalonia.Controls
         private static readonly FuncTemplate<IPanel> DefaultPanel =
             new FuncTemplate<IPanel>(() => new DataGridCellsPanel());
 
-        static DataGridColumnHeadersPresenter()
+        static DataGridCellsPresenter()
         {
-            ItemsPanelProperty.OverrideDefaultValue<DataGridColumnHeadersPresenter>(DefaultPanel);
+            ItemsPanelProperty.OverrideDefaultValue<DataGridCellsPresenter>(DefaultPanel);
         }
 
         /// <inheritdoc/>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            return new ItemContainerGenerator<DataGridColumnHeader>(
+            return new ItemContainerGenerator<DataGridCell>(
                 this,
-                DataGridColumnHeader.ContentProperty,
-                DataGridColumnHeader.ContentTemplateProperty);
+                DataGridCell.ContentProperty,
+                DataGridCell.ContentTemplateProperty);
         }
     }
 }

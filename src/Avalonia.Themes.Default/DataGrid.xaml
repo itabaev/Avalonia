@@ -14,13 +14,17 @@
                         Background="{TemplateBinding Background}"
                         HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                         VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
-            <ItemsPresenter Name="PART_ItemsPresenter"
-                            Items="{TemplateBinding Items}"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}"
-                            Margin="{TemplateBinding Padding}"
-                            MemberSelector="{TemplateBinding MemberSelector}"
-                            VirtualizationMode="{TemplateBinding VirtualizationMode}"/>
+            <Grid RowDefinitions="Auto,*">
+              <DataGridColumnHeadersPresenter Grid.Row="0" Items="{Binding Columns, RelativeSource={RelativeSource TemplatedParent}}" />
+
+              <ItemsPresenter Grid.Row="1" Name="PART_ItemsPresenter"
+                              Items="{TemplateBinding Items}"
+                              ItemsPanel="{TemplateBinding ItemsPanel}"
+                              ItemTemplate="{TemplateBinding ItemTemplate}"
+                              Margin="{TemplateBinding Padding}"
+                              MemberSelector="{TemplateBinding MemberSelector}"
+                              VirtualizationMode="{TemplateBinding VirtualizationMode}"/>
+            </Grid>
           </ScrollViewer>
         </Border>
       </ControlTemplate>

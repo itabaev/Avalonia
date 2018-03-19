@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
@@ -9,7 +10,7 @@ namespace ControlCatalog.Pages
     {
         public DataGridPage()
         {
-            Collection = new Collection<CollectionItem>
+            Collection = new ObservableCollection<CollectionItem>
             {
                 new CollectionItem
                 {
@@ -19,7 +20,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.26"),
                     InStock = false,
                     Weight = -0.29,
-                    Quantity = 471
+                    Quantity = 471,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -29,7 +31,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.05.10"),
                     InStock = true,
                     Weight = 0.14,
-                    Quantity = 356
+                    Quantity = 356,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -39,7 +42,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.07"),
                     InStock = true,
                     Weight = 0.35,
-                    Quantity = 926
+                    Quantity = 926,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -49,7 +53,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.08.17"),
                     InStock = false,
                     Weight = -0.02,
-                    Quantity = 66
+                    Quantity = 66,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -59,7 +64,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.07.09"),
                     InStock = true,
                     Weight = 0.33,
-                    Quantity = 152
+                    Quantity = 152,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -69,7 +75,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.09.27"),
                     InStock = false,
                     Weight = 0.15,
-                    Quantity = 419
+                    Quantity = 419,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -79,7 +86,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.10.11"),
                     InStock = false,
                     Weight = -0.53,
-                    Quantity = 886
+                    Quantity = 886,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -89,7 +97,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.03.20"),
                     InStock = false,
                     Weight = 0.01,
-                    Quantity = 761
+                    Quantity = 761,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -99,7 +108,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.07.04"),
                     InStock = true,
                     Weight = -0.08,
-                    Quantity = 965
+                    Quantity = 965,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -109,7 +119,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.09.19"),
                     InStock = false,
                     Weight = 0.23,
-                    Quantity = 932
+                    Quantity = 932,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -119,7 +130,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.23"),
                     InStock = false,
                     Weight = -0.04,
-                    Quantity = 235
+                    Quantity = 235,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -129,7 +141,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.12"),
                     InStock = false,
                     Weight = 0.02,
-                    Quantity = 234
+                    Quantity = 234,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -139,7 +152,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.01.21"),
                     InStock = true,
                     Weight = -0.03,
-                    Quantity = 309
+                    Quantity = 309,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -149,7 +163,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.06.07"),
                     InStock = false,
                     Weight = -0.3,
-                    Quantity = 122
+                    Quantity = 122,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -159,7 +174,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.27"),
                     InStock = false,
                     Weight = -0.47,
-                    Quantity = 7
+                    Quantity = 7,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -169,7 +185,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.09.26"),
                     InStock = false,
                     Weight = -0.26,
-                    Quantity = 145
+                    Quantity = 145,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -179,7 +196,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.22"),
                     InStock = true,
                     Weight = 0.32,
-                    Quantity = 646
+                    Quantity = 646,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -189,7 +207,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.08.24"),
                     InStock = false,
                     Weight = 0.25,
-                    Quantity = 242
+                    Quantity = 242,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -199,7 +218,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.04.18"),
                     InStock = true,
                     Weight = -0.31,
-                    Quantity = 5
+                    Quantity = 5,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -209,7 +229,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.10"),
                     InStock = true,
                     Weight = 0.02,
-                    Quantity = 28
+                    Quantity = 28,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -219,7 +240,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.08.22"),
                     InStock = false,
                     Weight = -0.07,
-                    Quantity = 9
+                    Quantity = 9,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -229,7 +251,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.09.08"),
                     InStock = false,
                     Weight = -0.08,
-                    Quantity = 783
+                    Quantity = 783,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -239,7 +262,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.10.12"),
                     InStock = true,
                     Weight = -0.47,
-                    Quantity = 32
+                    Quantity = 32,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -249,7 +273,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.12"),
                     InStock = false,
                     Weight = -0.24,
-                    Quantity = 335
+                    Quantity = 335,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -259,7 +284,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.10"),
                     InStock = false,
                     Weight = -0.09,
-                    Quantity = 885
+                    Quantity = 885,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -269,7 +295,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.21"),
                     InStock = true,
                     Weight = 0.1,
-                    Quantity = 193
+                    Quantity = 193,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -279,7 +306,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.16"),
                     InStock = false,
                     Weight = 0.35,
-                    Quantity = 155
+                    Quantity = 155,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -289,7 +317,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.12.15"),
                     InStock = true,
                     Weight = 0.13,
-                    Quantity = 878
+                    Quantity = 878,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -299,7 +328,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.27"),
                     InStock = false,
                     Weight = 0.08,
-                    Quantity = 321
+                    Quantity = 321,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -309,7 +339,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.01.18"),
                     InStock = false,
                     Weight = -0.54,
-                    Quantity = 336
+                    Quantity = 336,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -319,7 +350,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.01.03"),
                     InStock = true,
                     Weight = -0.19,
-                    Quantity = 296
+                    Quantity = 296,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -329,7 +361,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.03"),
                     InStock = false,
                     Weight = -0.25,
-                    Quantity = 32
+                    Quantity = 32,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -339,7 +372,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.07.23"),
                     InStock = false,
                     Weight = 0.15,
-                    Quantity = 612
+                    Quantity = 612,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -349,7 +383,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.01.15"),
                     InStock = false,
                     Weight = -0.35,
-                    Quantity = 455
+                    Quantity = 455,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -359,7 +394,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.07.30"),
                     InStock = false,
                     Weight = -0.2,
-                    Quantity = 656
+                    Quantity = 656,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -369,7 +405,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.02.23"),
                     InStock = true,
                     Weight = -0.39,
-                    Quantity = 432
+                    Quantity = 432,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -379,7 +416,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.04.16"),
                     InStock = true,
                     Weight = 0.05,
-                    Quantity = 645
+                    Quantity = 645,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -389,7 +427,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.25"),
                     InStock = true,
                     Weight = -0.14,
-                    Quantity = 836
+                    Quantity = 836,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -399,7 +438,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.13"),
                     InStock = false,
                     Weight = 0.49,
-                    Quantity = 571
+                    Quantity = 571,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -409,7 +449,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.03"),
                     InStock = false,
                     Weight = 0.01,
-                    Quantity = 779
+                    Quantity = 779,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -419,7 +460,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.13"),
                     InStock = false,
                     Weight = -0.21,
-                    Quantity = 69
+                    Quantity = 69,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -429,7 +471,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.05.27"),
                     InStock = false,
                     Weight = 0.15,
-                    Quantity = 428
+                    Quantity = 428,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -439,7 +482,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.04.23"),
                     InStock = true,
                     Weight = -0.01,
-                    Quantity = 792
+                    Quantity = 792,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -449,7 +493,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.28"),
                     InStock = false,
                     Weight = 0.03,
-                    Quantity = 533
+                    Quantity = 533,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -459,7 +504,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.12"),
                     InStock = true,
                     Weight = 0.47,
-                    Quantity = 166
+                    Quantity = 166,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -469,7 +515,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.20"),
                     InStock = true,
                     Weight = 0.32,
-                    Quantity = 539
+                    Quantity = 539,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -479,7 +526,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.26"),
                     InStock = false,
                     Weight = -0.33,
-                    Quantity = 161
+                    Quantity = 161,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -489,7 +537,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.30"),
                     InStock = false,
                     Weight = 0.22,
-                    Quantity = 587
+                    Quantity = 587,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -499,7 +548,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.26"),
                     InStock = true,
                     Weight = -0.21,
-                    Quantity = 756
+                    Quantity = 756,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -509,7 +559,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.20"),
                     InStock = true,
                     Weight = -0.28,
-                    Quantity = 204
+                    Quantity = 204,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -519,7 +570,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.04.03"),
                     InStock = true,
                     Weight = -0.34,
-                    Quantity = 21
+                    Quantity = 21,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -529,7 +581,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.05.24"),
                     InStock = false,
                     Weight = 0.32,
-                    Quantity = 327
+                    Quantity = 327,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -539,7 +592,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.09.02"),
                     InStock = false,
                     Weight = 0.21,
-                    Quantity = 466
+                    Quantity = 466,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -549,7 +603,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.08.05"),
                     InStock = true,
                     Weight = -0.12,
-                    Quantity = 231
+                    Quantity = 231,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -559,7 +614,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.05.14"),
                     InStock = false,
                     Weight = -0.08,
-                    Quantity = 153
+                    Quantity = 153,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -569,7 +625,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.07.26"),
                     InStock = true,
                     Weight = 0.86,
-                    Quantity = 980
+                    Quantity = 980,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -579,7 +636,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.10.24"),
                     InStock = true,
                     Weight = 0.05,
-                    Quantity = 416
+                    Quantity = 416,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -589,7 +647,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.25"),
                     InStock = false,
                     Weight = -0.12,
-                    Quantity = 319
+                    Quantity = 319,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -599,7 +658,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.03.10"),
                     InStock = false,
                     Weight = -0.03,
-                    Quantity = 968
+                    Quantity = 968,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -609,7 +669,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.11.23"),
                     InStock = true,
                     Weight = -0.06,
-                    Quantity = 859
+                    Quantity = 859,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -619,7 +680,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.01"),
                     InStock = true,
                     Weight = -0.03,
-                    Quantity = 350
+                    Quantity = 350,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -629,7 +691,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.16"),
                     InStock = false,
                     Weight = -0.16,
-                    Quantity = 22
+                    Quantity = 22,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -639,7 +702,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.01.04"),
                     InStock = true,
                     Weight = -0.03,
-                    Quantity = 85
+                    Quantity = 85,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -649,7 +713,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.06"),
                     InStock = true,
                     Weight = 0,
-                    Quantity = 925
+                    Quantity = 925,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -659,7 +724,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.12.03"),
                     InStock = true,
                     Weight = -0.3,
-                    Quantity = 486
+                    Quantity = 486,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -669,7 +735,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.07.30"),
                     InStock = false,
                     Weight = -0.18,
-                    Quantity = 531
+                    Quantity = 531,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -679,7 +746,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.24"),
                     InStock = true,
                     Weight = -0.18,
-                    Quantity = 141
+                    Quantity = 141,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -689,7 +757,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.03.16"),
                     InStock = false,
                     Weight = -0.08,
-                    Quantity = 617
+                    Quantity = 617,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -699,7 +768,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.04.08"),
                     InStock = false,
                     Weight = 0.15,
-                    Quantity = 565
+                    Quantity = 565,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -709,7 +779,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.17"),
                     InStock = false,
                     Weight = -0.1,
-                    Quantity = 702
+                    Quantity = 702,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -719,7 +790,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.09.28"),
                     InStock = true,
                     Weight = 0.06,
-                    Quantity = 977
+                    Quantity = 977,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -729,7 +801,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.02.26"),
                     InStock = false,
                     Weight = 0.6,
-                    Quantity = 829
+                    Quantity = 829,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -739,7 +812,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.01.16"),
                     InStock = true,
                     Weight = 0.17,
-                    Quantity = 709
+                    Quantity = 709,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -749,7 +823,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.29"),
                     InStock = true,
                     Weight = 0.1,
-                    Quantity = 713
+                    Quantity = 713,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -759,7 +834,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.04.06"),
                     InStock = false,
                     Weight = -0.3,
-                    Quantity = 856
+                    Quantity = 856,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -769,7 +845,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.06.03"),
                     InStock = false,
                     Weight = 0.07,
-                    Quantity = 7
+                    Quantity = 7,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -779,7 +856,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.28"),
                     InStock = false,
                     Weight = 0.48,
-                    Quantity = 649
+                    Quantity = 649,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -789,7 +867,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.19"),
                     InStock = false,
                     Weight = 0.12,
-                    Quantity = 955
+                    Quantity = 955,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -799,7 +878,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.10.29"),
                     InStock = false,
                     Weight = -0.08,
-                    Quantity = 606
+                    Quantity = 606,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -809,7 +889,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.02.20"),
                     InStock = false,
                     Weight = -0.35,
-                    Quantity = 168
+                    Quantity = 168,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -819,7 +900,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.18"),
                     InStock = false,
                     Weight = -0.22,
-                    Quantity = 38
+                    Quantity = 38,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -829,7 +911,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.06.29"),
                     InStock = false,
                     Weight = -0.03,
-                    Quantity = 404
+                    Quantity = 404,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -839,7 +922,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.09.08"),
                     InStock = false,
                     Weight = 0.18,
-                    Quantity = 968
+                    Quantity = 968,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -849,7 +933,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.24"),
                     InStock = true,
                     Weight = -0.03,
-                    Quantity = 768
+                    Quantity = 768,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -859,7 +944,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.01.25"),
                     InStock = false,
                     Weight = 0.07,
-                    Quantity = 16
+                    Quantity = 16,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -869,7 +955,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.03.31"),
                     InStock = false,
                     Weight = -0.07,
-                    Quantity = 18
+                    Quantity = 18,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -879,7 +966,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.05.16"),
                     InStock = false,
                     Weight = 0.08,
-                    Quantity = 434
+                    Quantity = 434,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -889,7 +977,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.11.21"),
                     InStock = true,
                     Weight = -0.03,
-                    Quantity = 23
+                    Quantity = 23,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -899,7 +988,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.10.10"),
                     InStock = true,
                     Weight = 0.01,
-                    Quantity = 681
+                    Quantity = 681,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -909,7 +999,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.04"),
                     InStock = true,
                     Weight = -0.12,
-                    Quantity = 198
+                    Quantity = 198,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -919,7 +1010,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.05.19"),
                     InStock = false,
                     Weight = -0.12,
-                    Quantity = 27
+                    Quantity = 27,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -929,7 +1021,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.02.08"),
                     InStock = true,
                     Weight = 0.42,
-                    Quantity = 689
+                    Quantity = 689,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -939,7 +1032,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.01"),
                     InStock = true,
                     Weight = 0.21,
-                    Quantity = 404
+                    Quantity = 404,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -949,7 +1043,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.08.10"),
                     InStock = true,
                     Weight = 0.45,
-                    Quantity = 388
+                    Quantity = 388,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -959,7 +1054,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.02.01"),
                     InStock = true,
                     Weight = 0.43,
-                    Quantity = 533
+                    Quantity = 533,
+                    Condition = Condition.Broken
                 },
                 new CollectionItem
                 {
@@ -969,7 +1065,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2019.02.24"),
                     InStock = true,
                     Weight = -0.35,
-                    Quantity = 377
+                    Quantity = 377,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -979,7 +1076,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2017.08.20"),
                     InStock = true,
                     Weight = 0.13,
-                    Quantity = 82
+                    Quantity = 82,
+                    Condition = Condition.Restored
                 },
                 new CollectionItem
                 {
@@ -989,7 +1087,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.09.05"),
                     InStock = false,
                     Weight = 0.15,
-                    Quantity = 557
+                    Quantity = 557,
+                    Condition = Condition.New
                 },
                 new CollectionItem
                 {
@@ -999,7 +1098,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.12.19"),
                     InStock = false,
                     Weight = -0.31,
-                    Quantity = 621
+                    Quantity = 621,
+                    Condition = Condition.Used
                 },
                 new CollectionItem
                 {
@@ -1009,7 +1109,8 @@ namespace ControlCatalog.Pages
                     Date = DateTime.Parse("2018.03.05"),
                     InStock = false,
                     Weight = 0.25,
-                    Quantity = 818
+                    Quantity = 818,
+                    Condition = Condition.Used
                 }
             };
 
@@ -1021,7 +1122,7 @@ namespace ControlCatalog.Pages
             AvaloniaXamlLoader.Load(this);
         }
 
-        public Collection<CollectionItem> Collection { get; }
+        public ObservableCollection<CollectionItem> Collection { get; }
 
         public class CollectionItem
         {
@@ -1031,13 +1132,23 @@ namespace ControlCatalog.Pages
 
             public string Description { get; set; }
 
-            public DateTime Date { get; set; }
+            public DateTime? Date { get; set; }
 
-            public bool? InStock { get; set; }
+            public bool InStock { get; set; }
 
             public double Weight { get; set; }
 
             public int Quantity { get; set; }
+
+            public Condition Condition { get; set; }
+        }
+
+        public enum Condition
+        {
+            New,
+            Restored,
+            Used,
+            Broken
         }
     }
 }
