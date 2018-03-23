@@ -38,6 +38,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DataGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Include="Pages\ButtonSpinnerPage.xaml">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DialogsPage.xaml">
       <SubType>Designer</SubType>
@@ -62,6 +64,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ContextMenuPage.xaml" />
     <EmbeddedResource Include="Pages\DropDownPage.xaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DatePickerPage.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ExpanderPage.xaml">
@@ -132,6 +137,9 @@
     <Compile Include="Pages\DropDownPage.xaml.cs">
       <DependentUpon>DropDownPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DatePickerPage.xaml.cs">
+      <DependentUpon>DatePickerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExpanderPage.xaml.cs">
       <DependentUpon>ExpanderPage.xaml</DependentUpon>
     </Compile>
@@ -164,6 +172,8 @@
     </Compile>
     <Compile Include="Pages\DataGridPage.xaml.cs">
       <DependentUpon>DataGridPage.xaml</DependentUpon>
+    <Compile Include="Pages\ButtonSpinnerPage.xaml.cs">
+      <DependentUpon>ButtonSpinnerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ScreenPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
