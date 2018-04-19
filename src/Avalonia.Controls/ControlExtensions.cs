@@ -114,5 +114,23 @@ namespace Avalonia.Controls
 
             return trigger.Subscribe(x => classes.Set(name, x));
         }
+
+        /// <summary>
+        /// Finds the parent control in the scope of the specified control.
+        /// </summary>
+        /// <typeparam name="T">The type of the control to find.</typeparam>
+        /// <param name="control">The control to look in.</param>
+        /// <returns>The control or null if not found.</returns>
+        public static T FindParent<T>(this IControl control) where T : class, IControl
+        {
+            Contract.Requires<ArgumentNullException>(control != null);
+
+            do
+            {
+                control = control.Parent;
+            } while (control != null && !(control is T));
+
+            return control as T;
+        }
     }
 }

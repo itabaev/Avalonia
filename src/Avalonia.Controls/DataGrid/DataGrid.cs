@@ -131,10 +131,7 @@ namespace Avalonia.Controls
         /// <inheritdoc/>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            return new ItemContainerGenerator<DataGridRow>(
-                this,
-                DataGridRow.ContentProperty,
-                DataGridRow.ContentTemplateProperty);
+            return new DataGridRowContainerGenerator(this);
         }
 
         /// <inheritdoc/>

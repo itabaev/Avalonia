@@ -38,6 +38,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DataGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ButtonSpinnerPage.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -172,6 +173,7 @@
     </Compile>
     <Compile Include="Pages\DataGridPage.xaml.cs">
       <DependentUpon>DataGridPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ButtonSpinnerPage.xaml.cs">
       <DependentUpon>ButtonSpinnerPage.xaml</DependentUpon>
     </Compile>
